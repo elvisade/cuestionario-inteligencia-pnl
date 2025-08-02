@@ -255,11 +255,19 @@ document.getElementById("quizForm").addEventListener("submit", function(e) {
   }
 
   // Agregar conteo de respuestas
-  resultado += "\\n\\nConteo de respuestas:";
-  resultado += `\\nVisual: ${totales.visual}`;
-  resultado += `\\nAuditivo: ${totales.auditivo}`;
-  resultado += `\\nCinestésico: ${totales.cinestesico}`;
-
+    },
+  {
+  resultado += "\\n\\nConteo de respuestas:";}
+                                                       },
+  {
+  resultado += `\\nVisual: ${totales.visual}`;}
+                                                       },
+  {
+  resultado += `\\nAuditivo: ${totales.auditivo}`;}
+                                                       },
+  {
+  resultado += `\\nCinestésico: ${totales.cinestesico}`;}
+}
   // Mostrar resultado
   document.getElementById("resultado").textContent = resultado;
 });

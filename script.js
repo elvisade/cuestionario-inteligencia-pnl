@@ -238,9 +238,7 @@ document.getElementById("quizForm").addEventListener("submit", function(e) {
 
   let resultado = "";
   const max = Math.max(totales.visual, totales.auditivo, totales.cinestesico);
-  if (totales.visual === max) resultado = "Tu estilo perceptivo dominante es VISUAL. Aprendes mejor observando imágenes, colores, formas y movimientos.";
-  else if (totales.auditivo === max) resultado = "Tu estilo perceptivo dominante es AUDITIVO. Aprendes mejor escuchando sonidos, palabras y explicaciones verbales.";
-  else resultado = "Tu estilo perceptivo dominante es CINESTÉSICO. Aprendes mejor a través del movimiento, la manipulación y la experiencia física.";
-
-  document.getElementById("resultado").textContent = resultado;
+  if (totales.visual === max) resultado = "Tu estilo perceptivo dominante es VISUAL...";
+else if (totales.auditivo === max) resultado = "Tu estilo perceptivo dominante es AUDITIVO...";
+else resultado = "Tu estilo perceptivo dominante es CINESTÉSICO...";
 });

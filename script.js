@@ -230,7 +230,7 @@ preguntas.forEach((p, idx) => {
 document.getElementById("quizForm").addEventListener("submit", function(e) {
   e.preventDefault();
 
-  // Reiniciar totales
+  // Reiniciar conteo
   totales.visual = 0;
   totales.auditivo = 0;
   totales.cinestesico = 0;
@@ -243,31 +243,42 @@ document.getElementById("quizForm").addEventListener("submit", function(e) {
     else if (r.value === "C") totales.cinestesico++;
   });
 
-  let resultado = "";
   const max = Math.max(totales.visual, totales.auditivo, totales.cinestesico);
+  let mensaje = "";
 
   if (totales.visual === max) {
-    resultado = "Tu estilo perceptivo dominante es VISUAL.\\nAprendes mejor observando imágenes, colores, formas y movimientos.";
+    mensaje = "Tu estilo perceptivo dominante es <strong>VISUAL</strong>. Aprendes mejor observando imágenes, colores, formas y movimientos.";
   } else if (totales.auditivo === max) {
-    resultado = "Tu estilo perceptivo dominante es AUDITIVO.\\nAprendes mejor escuchando sonidos, palabras y explicaciones verbales.";
+    mensaje = "Tu estilo perceptivo dominante es <strong>AUDITIVO</strong>. Aprendes mejor escuchando sonidos, palabras y explicaciones verbales.";
   } else {
-    resultado = "Tu estilo perceptivo dominante es CINESTÉSICO.\\nAprendes mejor a través del movimiento, la manipulación y la experiencia física.";
+    mensaje = "Tu estilo perceptivo dominante es <strong>CINESTÉSICO</strong>. Aprendes mejor a través del movimiento, la manipulación y la experiencia física.";
   }
 
-  // Agregar conteo de respuestas
-    },
-  {
-  resultado += "\\n\\nConteo de respuestas:";}
-                                                       },
-  {
-  resultado += `\\nVisual: ${totales.visual}`;}
-                                                       },
-  {
-  resultado += `\\nAuditivo: ${totales.auditivo}`;}
-                                                       },
-  {
-  resultado += `\\nCinestésico: ${totales.cinestesico}`;}
-}
-  // Mostrar resultado
-  document.getElementById("resultado").textContent = resultado;
+  // Crear tabla de resultados
+  const tabla = `
+    <table border="1" cellpadding="10" style="margin: 20px auto; border-collapse: collapse;">
+      <thead>
+        <tr>
+          <th>Estilo</th>
+          <th>Respuestas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Visual</td>
+          <td>${totales.visual}</td>
+        </tr>
+        <tr>
+          <td>Auditivo</td>
+          <td>${totales.auditivo}</td>
+        </tr>
+        <tr>
+          <td>Cinestésico</td>
+          <td>${totales.cinestesico}</td>
+        </tr>
+      </tbody>
+    </table>
+  `;
+
+  document.getElementById("resultado").innerHTML = `<p>${mensaje}</p>${tabla}`;
 });

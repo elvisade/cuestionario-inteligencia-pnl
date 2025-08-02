@@ -229,7 +229,14 @@ preguntas.forEach((p, idx) => {
 
 document.getElementById("quizForm").addEventListener("submit", function(e) {
   e.preventDefault();
+
+  // Reiniciar totales
+  totales.visual = 0;
+  totales.auditivo = 0;
+  totales.cinestesico = 0;
+
   const respuestas = document.querySelectorAll("input[type=radio]:checked");
+
   respuestas.forEach(r => {
     if (r.value === "A") totales.visual++;
     else if (r.value === "B") totales.auditivo++;
@@ -238,7 +245,21 @@ document.getElementById("quizForm").addEventListener("submit", function(e) {
 
   let resultado = "";
   const max = Math.max(totales.visual, totales.auditivo, totales.cinestesico);
-  if (totales.visual === max) resultado = "Tu estilo perceptivo dominante es VISUAL...";
-else if (totales.auditivo === max) resultado = "Tu estilo perceptivo dominante es AUDITIVO...";
-else resultado = "Tu estilo perceptivo dominante es CINESTÉSICO...";
+
+  if (totales.visual === max) {
+    resultado = "Tu estilo perceptivo dominante es VISUAL.\\nAprendes mejor observando imágenes, colores, formas y movimientos.";
+  } else if (totales.auditivo === max) {
+    resultado = "Tu estilo perceptivo dominante es AUDITIVO.\\nAprendes mejor escuchando sonidos, palabras y explicaciones verbales.";
+  } else {
+    resultado = "Tu estilo perceptivo dominante es CINESTÉSICO.\\nAprendes mejor a través del movimiento, la manipulación y la experiencia física.";
+  }
+
+  // Agregar conteo de respuestas
+  resultado += "\\n\\nConteo de respuestas:";
+  resultado += `\\nVisual: ${totales.visual}`;
+  resultado += `\\nAuditivo: ${totales.auditivo}`;
+  resultado += `\\nCinestésico: ${totales.cinestesico}`;
+
+  // Mostrar resultado
+  document.getElementById("resultado").textContent = resultado;
 });
